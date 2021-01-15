@@ -28,9 +28,11 @@ ui <- fluidPage(
   )
 
 server <- function(input, output) {
+  
+  
   output$movie <- renderText({
-    choices <- c(as.character(input$choice1), as.character(input$choice2))
-  find_movie(input = input )
+    
+  find_movie(choices = input)
     })
   
   
