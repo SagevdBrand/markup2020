@@ -1,6 +1,7 @@
 library(tidyverse)
 
 # Loading the data
+# Data downloaded from: https://www.kaggle.com/rounakbanik/the-movies-dataset
 df <- read_csv("data/movies_metadata.csv")
 
 # We only need the following columns
@@ -14,22 +15,13 @@ test <- c(unlist(data$genres))
 
 # Let's save those to make radio buttons out of
 genres <- unique(test)
+genres <- c(genres, "Empty")
 
 # Lists are not going to be nice to work with later on, so I'd rather just have a string of the characters:
 data$genres <- sapply(data$genres, paste0, collapse=" ")
 
 # Save the data
 write_csv(data, "data/appdata.csv")
-
-## Testing  
-# if 1 input category:
-test <- which(str_detect(data$genres, "Comedy"))
-
-
-#if 2 inputs:
-test <- intersect(which(str_detect(data$genres, "Comedy")), which(str_detect(data$genres, "Romance")))
-
-
-
+write_rds(genres, "data/genres.Rds")
 
  
